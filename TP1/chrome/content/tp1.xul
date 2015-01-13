@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+
+<window title="Gestion des caisses de recouvrement"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		width="600px"
+		height="500px"><script type="application/javascript" src="chrome://myapp/content/main.js"/>
+
+ 
+
+  <vbox>
+	<hbox>
+		<image src="icone.jpg" width="30px" style="margin-top: 7px; margin-bottom: 7px; margin-left: 2px;"/>
+		<hbox style="border: 1px solid #DDD; margin: 5px; padding: 3px; border-radius: 5px;" flex="1">
+			<label value="Code" style="margin-top: 7px;"/>
+			<button type="menu" label="URSSAF" disabled="true"/>
+			<button label="Modifier" disabled="true"/>
+			<button label="Ajouter (+)" disabled="true"/>
+			<spacer flex="1"/>
+			<button label="Fermer" disabled="true"/>
+		</hbox>
+	</hbox>
+	
+	<vbox style="border: 1px solid #DDD; margin: 5px; padding: 3px; border-radius: 5px;">
+		<hbox>
+			<label value="Code" width="125px" style="margin-top: 7px;"/>
+			<textbox value="URSSAF" disabled="true" width="90px"/>
+		</hbox>
+		<hbox>
+			<label value="Nom" width="125px" style="margin-top: 7px;"/>
+			<textbox value="U.R.S.S.A.F DE SEINE ET MARNE" flex="1" style="font-weight: bold;"/>
+		</hbox>	
+		<hbox>
+			<label value="Adresse" width="125px" style="margin-top: 7px;"/>
+			<textbox value="6, rue René Cassin" flex="1"/>
+		</hbox>
+		<textbox value="" flex="1" style="margin-left: 140px;"/>
+		<hbox>
+			<label value="Code postal et ville" width="125px" style="margin-top: 7px;"/>
+			<textbox value="77023" width="90px" style="font-weight: bold;"/>
+			<textbox value="MELUN CEDEX" flex="1" style="font-weight: bold;"/>
+		</hbox>
+		<hbox>
+			<label value="Numéro d'affiliation à la caisse" width="223px" style="margin-top: 7px;"/>
+			<textbox value="7701187450171" flex="1"/>
+		</hbox>
+		<hbox>
+			<label value="Plafond de référence (P)" width="223px" style="margin-top: 7px;"/>
+			<textbox value="2773,0" width="90px" style="text-align: right;"/>
+		</hbox>
+
+	</vbox>
+    
+  </vbox>
+
+
+  
+</window>

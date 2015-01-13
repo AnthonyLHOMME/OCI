@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xul-overlay href="chrome://myapp/content/overlay.xul"?>
+<!DOCTYPE overlay SYSTEM "chrome://myapp/locale/overlay.dtd">
+
+<window title="Liste des Unités d'enseignement"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		    width="800px"
+		    height="500px">
+
+
+	<box id="tree">
+	</box>
+	
+  
+</window>

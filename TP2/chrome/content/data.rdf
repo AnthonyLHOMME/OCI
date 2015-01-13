@@ -1,0 +1,32 @@
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:UE="http://www.some-ue.com/rdf#">
+
+	<RDF:Seq about="http://www.some-ue.com/all-ue">
+	  <RDF:li>
+	    <RDF:Description about="http://www.some-ue.com/OCI">
+	      <UE:name>OCI</UE:name>
+	      <UE:resp>March Christie</UE:resp>
+	      <UE:hours-courses>8</UE:hours-courses>
+	      <UE:hours-td>0</UE:hours-td>
+	      <UE:hours-tp>8</UE:hours-tp>
+	      <UE:exams>Examen TP</UE:exams>
+	    </RDF:Description>
+      <RDF:Description about="http://www.some-ue.com/AOC">
+	      <UE:name>AOC</UE:name>
+	      <UE:resp>Noël Plouzeau</UE:resp>
+	      <UE:hours-courses>6</UE:hours-courses>
+	      <UE:hours-td>6</UE:hours-td>
+	      <UE:hours-tp>8</UE:hours-tp>
+	      <UE:exams>Examen TP</UE:exams>
+	    </RDF:Description>
+      <RDF:Description about="http://www.some-ue.com/TAA">
+	      <UE:name>TAA</UE:name>
+	      <UE:resp>Olivier Barais</UE:resp>
+	      <UE:hours-courses>99</UE:hours-courses>
+	      <UE:hours-td>99</UE:hours-td>
+	      <UE:hours-tp>99</UE:hours-tp>
+	      <UE:exams>Examen TP</UE:exams>
+	    </RDF:Description>
+	  </RDF:li>
+	</RDF:Seq>
+</RDF:RDF>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+
+<window title="Liste des Unités d'enseignement"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		width="800px"
+		height="500px">
+
+	<tree flex="1" datasources="data.rdf" ref="http://www.some-ue.com/all-ue">
+
+		<treecols>
+			<treecol id="name" label="name" primary="true" flex="1"/>
+			<treecol id="resp" label="resp" flex="1"/>
+			<treecol id="hours-courses" label="hours-courses" flex="1"/>
+			<treecol id="hours-td" label="hours-td" flex="1"/>
+			<treecol id="hours-tp" label="hours-tp" flex="1"/>
+			<treecol id="exams" label="exams" flex="1"/>
+		</treecols>
+
+		<template>
+			<rule>
+				<treechildren>
+					<treeitem uri="rdf:*">
+						<treerow>
+							<treecell label="rdf:http://www.some-ue.com/rdf#name"/>
+							<treecell label="rdf:http://www.some-ue.com/rdf#resp"/>
+							<treecell label="rdf:http://www.some-ue.com/rdf#hours-courses"/>
+							<treecell label="rdf:http://www.some-ue.com/rdf#hours-td"/>
+							<treecell label="rdf:http://www.some-ue.com/rdf#hours-tp"/>
+							<treecell label="rdf:http://www.some-ue.com/rdf#exams"/>
+						</treerow>
+					</treeitem>
+				</treechildren>
+			</rule>
+		</template>
+
+	</tree>
+  
+</window>
