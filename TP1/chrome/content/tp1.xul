@@ -4,8 +4,7 @@
 <window title="Gestion des caisses de recouvrement"
         xmlns:html="http://www.w3.org/1999/xhtml"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-		width="600px"
-		height="500px"><script type="application/javascript" src="chrome://myapp/content/main.js"/>
+		width="550px"><script type="application/javascript" src="chrome://myapp/content/main.js"/>
 
  
 
@@ -48,6 +47,40 @@
 		<hbox>
 			<label value="Plafond de référence (P)" width="223px" style="margin-top: 7px;"/>
 			<textbox value="2773,0" width="90px" style="text-align: right;"/>
+		</hbox>
+		<vbox style="border: 1px solid #DDD; margin: 5px; padding: 3px; border-radius: 5px;">
+			<label value="Tranches" style="font-weight: bold;"/>
+			<hbox style="margin-left: 7px">
+				<label value="Code" style="margin-top: 7px"/>
+				<textbox value="A" width="70px"/>
+				<label value="de" style="margin-top: 7px"/>
+				<button type="menu" label="0" align="right"/>
+				<label value="P à" style="margin-top: 7px"/>
+				<button type="menu" label="1" align="right"/>
+				<label value="P" style="margin-top: 7px"/>
+			</hbox>
+			<hbox style="margin-left: 7px">
+				<spacer width="42px"/>
+				<textbox value="" width="70px"/>
+				<spacer width="26px"/>
+				<button type="menu" align="right"/>
+				<spacer width="29px"/>
+				<button type="menu" align="right"/>
+			</hbox>
+			<hbox style="margin-left: 7px">
+				<spacer width="42px"/>
+				<textbox value="" width="70px"/>
+				<spacer width="26px"/>
+				<button type="menu" align="right"/>
+				<spacer width="29px"/>
+				<button type="menu" align="right"/>
+			</hbox>
+		</vbox>
+
+		<hbox>
+			<spacer flex="1"/>
+			<button label="Valider"/>
+			<button label="Abandonner"/>
 		</hbox>
 
 	</vbox>
