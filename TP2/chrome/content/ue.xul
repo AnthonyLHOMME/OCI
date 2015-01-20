@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+
+<window title="Liste des Unités d'enseignement" 
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<tabbox  flex="1" >
+		<tabs>
+			<tab label="Interface 1" />
+			<tab label="Interface 2" />
+		</tabs>
+		<tabpanels flex="1" datasources="data.rdf" ref="http://www.some-ue.com/all-ue" >
+			<iframe type="content-primary" src="tab1.xul" width="800px" height="500px" />
+			<iframe type="content-primary" src="tab2.xul" width="800px" height="500px" />
+		</tabpanels>
+	</tabbox>
+
+</window>

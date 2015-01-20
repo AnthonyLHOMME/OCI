@@ -1,14 +1,11 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin" type="text/css"?>
 
-<window title="Liste des Unités d'enseignement"
+<window title="Liste des Unités d'enseignement" width="800px" height="500px"
         xmlns:html="http://www.w3.org/1999/xhtml"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-		width="800px"
-		height="500px">
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 	<tree flex="1" datasources="data.rdf" ref="http://www.some-ue.com/all-ue">
-
 		<treecols>
 			<treecol id="name" label="name" primary="true" flex="1"/>
 			<treecol id="resp" label="resp" flex="1"/>
@@ -17,7 +14,6 @@
 			<treecol id="hours-tp" label="hours-tp" flex="1"/>
 			<treecol id="exams" label="exams" flex="1"/>
 		</treecols>
-
 		<template>
 			<rule>
 				<treechildren>
@@ -34,7 +30,6 @@
 				</treechildren>
 			</rule>
 		</template>
-
 	</tree>
   
 </window>
