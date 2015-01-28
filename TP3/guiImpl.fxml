@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><?import javafx.scene.control.*?><?import java.lang.*?><?import javafx.scene.layout.*?><VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+   <children>
+      <Pane fx:id="paneLabel" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label prefHeight="200.0" prefWidth="600.0" text="Label"/>
+         </children>
+      </Pane>
+      <Pane fx:id="paneButton" prefHeight="200.0" prefWidth="200.0">
+      <children><Button fx:id="_4" text="Task 1"/><Button fx:id="_5" text="Task 2"/></children></Pane>
+   </children>
+</VBox>
