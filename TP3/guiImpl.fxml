@@ -1,11 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><?import javafx.scene.control.*?><?import java.lang.*?><?import javafx.scene.layout.*?><VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><?import javafx.geometry.*?><?import javafx.scene.control.*?><?import java.lang.*?><?import javafx.scene.layout.*?><VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" fx:controller="com.sample.Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0">
    <children>
-      <Pane fx:id="paneLabel" prefHeight="200.0" prefWidth="200.0">
+      <Button disable="false" fx:id="startButton" mnemonicParsing="false" text="Start"/>
+      <ListView fx:id="lvInstance" prefHeight="200.0">
+         <VBox.margin>
+            <Insets/>
+         </VBox.margin>
+      </ListView>
+      <HBox alignment="CENTER" fx:id="paneInfo">
          <children>
-            <Label prefHeight="200.0" prefWidth="600.0" text="Label"/>
+            <Label fx:id="labelInfo"/>
          </children>
-      </Pane>
-      <Pane fx:id="paneButton" prefHeight="200.0" prefWidth="200.0">
-      <children><Button fx:id="_4" text="Task 1"/><Button fx:id="_5" text="Task 2"/></children></Pane>
+      </HBox>
+      <HBox alignment="CENTER" fx:id="paneButton" spacing="10.0"><children><Button disable="true" fx:id="UserTask_6" text="Tache2"/><Button disable="true" fx:id="UserTask_5" text="Tache1"/><Button disable="true" fx:id="ManualTask_2" text="TacheManuelle3"/><Button disable="true" fx:id="ManualTask_3" text="TacheManuelle4"/></children></HBox>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+   </padding>
 </VBox>

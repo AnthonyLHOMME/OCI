@@ -1,105 +1,97 @@
 package com.sample;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.net.URL;
+import java.util.Iterator;
+import java.util.ResourceBundle;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.process.NodeInstance;
+import org.kie.api.runtime.process.WorkflowProcessInstance;
 
-public class Controller {
+public class Controller implements Initializable {
 
-	private Map<String,String> listFxmlButton = new HashMap<String,String>();
+	@FXML private ListView<WorkflowProcessInstance> lvInstance;
+	@FXML private Label labelInfo;
+	@FXML private HBox paneButton;
+	@FXML private Button startButton;
 
-	public void parseBPMN() throws Exception {
-		File bpmnFile = new File(getClass().getClassLoader().getResource("sample.bpmn").getPath());
+	private ObservableList<WorkflowProcessInstance> lvData = FXCollections.observableArrayList();
+	private WorkflowProcessInstance processInstance;
+	private TaskItemHandler itemHandler;
 
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse(bpmnFile);
-		doc.getDocumentElement().normalize();
+	@Override
+	public void initialize(URL location, ResourceBundle resource) {
+		lvInstance.setItems(lvData);
+		
+		//Recupere la session
+		KieSession ksession = Manager.getSession();
 
-		NodeList nList = doc.getElementsByTagName("userTask");
-		for (int i = 0; i < nList.getLength(); i++) {
-			Node userNode = nList.item(i);
-
-			String id = userNode.getAttributes().getNamedItem("id").getNodeValue();
-			String name = userNode.getAttributes().getNamedItem("name").getNodeValue();
-			listFxmlButton.put(id, name);
+		itemHandler = new TaskItemHandler();
+		ksession.getWorkItemManager().registerWorkItemHandler("Human Task", itemHandler);
+		ksession.getWorkItemManager().registerWorkItemHandler("Manual Task", itemHandler);
+		
+		startButton.setOnAction(new EventHandler<ActionEvent>() {
+    	    @Override
+			public void handle(ActionEvent e) {
+    	    	processInstance = Manager.getProcessInstance(true);
+    	    	lvData.add(processInstance);
+    	    	nextState();
+    	    }
+    	});
+		
+		for (final Node btn : paneButton.getChildren()) {
+			((Button) btn).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					itemHandler.completeWorkItem(null);
+					nextState();
+				}
+			});
 		}
 	}
-
-	public void parseFXML() throws Exception {
-		File fxmlFile = new File(getClass().getClassLoader().getResource("gui.fxml").getPath());
-
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse(fxmlFile);
-		doc.getDocumentElement().normalize();
-
-		NodeList nList = doc.getElementsByTagName("Pane");
-		for (int i = 0; i < nList.getLength(); i++) {
-			Node paneNode = nList.item(i);
-			if (paneNode.getAttributes().getNamedItem("fx:id").getNodeValue().equals("paneButton")) {
-				appendFxmlButton(doc, paneNode);
+	
+	private void nextState() {
+		// reset button
+		disableAllButton();
+		
+		if (processInstance.getNodeInstances().size() == 0) {
+			// finish state
+			labelInfo.setText("Finish");
+		} else {
+			String info = "";
+			Iterator<NodeInstance> nodes = processInstance.getNodeInstances().iterator();
+			while(nodes.hasNext()){
+				NodeInstance node = (NodeInstance) nodes.next();
+				info = info+" ou "+node.getNodeName();
+				enableButton(node.getNodeName());
 			}
-		}
-
-		saveDocument(doc);
-	}
-
-	private void appendFxmlButton(Document doc, Node parent) {
-		Element child = doc.createElement("children");
-		for(Entry<String, String> entry : listFxmlButton.entrySet()) {
-			String id = entry.getKey();
-			String name = entry.getValue();
-
-			Element button = doc.createElement("Button");
-			button.setAttribute("fx:id", id);
-			button.setAttribute("text", name);
-
-			child.appendChild(button);
-		}
-		parent.appendChild(child);
-	}
-
-	private void saveDocument(Document doc) {
-		try {
-			File f = new File("guiImpl.fxml");
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(f);
-			StreamResult result2 = new StreamResult(System.out);
-			
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			transformer.transform(source, result);
-			transformer.transform(source, result2);
-
-			
-			System.out.println("File saved!");
-		} catch (Exception e) {
-			System.err.println("File not saved!");
-			e.printStackTrace();
+			labelInfo.setText(info.substring(4));
 		}
 	}
 
-	public static void main(String argv[]) {
-		try {
-			Controller c = new Controller();
-			c.parseBPMN();
-			c.parseFXML();
-		} catch (Exception e) {
-			e.printStackTrace();
+	private void disableAllButton() {
+		for (Node btn : paneButton.getChildren()) {
+			btn.setDisable(true);
+		}
+	}
+	
+	private void enableButton(String nodeName) {
+		for (Node btn : paneButton.getChildren()) {
+			if(((Button) btn).getText().equals(nodeName)){
+				btn.setDisable(false);
+			}
 		}
 	}
 }
